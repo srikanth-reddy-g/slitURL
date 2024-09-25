@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <div>Hello World!!!</div>;
+  return <div className="text-2xl">slitUrl Application building soon!!!!!</div>;
 }
 
 export default App;

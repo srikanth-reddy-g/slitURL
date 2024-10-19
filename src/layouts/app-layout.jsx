@@ -11,7 +11,7 @@ const AppLayout = () => {
         </div>
       </main>
       <footer className="p-6 text-center bg-gray-800 text-white">
-        <div className="container mx-auto px-4">Made with 💖 by Srikanth</div>
+        <div className="container mx-auto px-4">Made with 💖 by Srikanth Reddy</div>
       </footer>
     </div>
   );

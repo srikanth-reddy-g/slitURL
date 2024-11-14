@@ -15,6 +15,7 @@ import * as Yup from "yup";
 import useFetch from "@/hooks/use-fetch";
 import { login } from "@/db/apiAuth";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { UrlState } from "@/context";
 
 const Login = () => {
   const [errors, setErrors] = useState([]);
@@ -36,9 +37,11 @@ const Login = () => {
   };
 
   const { data, error, loading, fn: fnLogin } = useFetch(login, formData);
+  const { fetchUser } = UrlState();
 
   useEffect(() => {
     if (error === null && data) {
+      fetchUser();
       navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
     }
   }, [data, error]);
@@ -74,7 +77,7 @@ const Login = () => {
           <CardDescription>
             to your account if you already have one
           </CardDescription>
-          {error && <Error message={errors.email} />}
+          {error && <Error message={error.message} />}
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">

@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import useFetch from "@/hooks/use-fetch";
 import { deleteUrl } from "@/db/apiUrls";
 import { BeatLoader } from "react-spinners";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const LinkCard = ({ url = [], fetchUrls }) => {
   const downloadImage = () => {
@@ -31,7 +32,7 @@ const LinkCard = ({ url = [], fetchUrls }) => {
     <div className="flex flex-col md:flex-row gap-5 border p-4 bg-gray-900 rounded-lg">
       <img
         src={url?.qr}
-        className="h-32 object-contain ring ring-blue-500 self-start"
+        className="h-32 object-contain ring ring-blue-500 self-start rounded-lg"
         alt="qr code"
       />
       <Link to={`/link/${url?.id}`} className="flex flex-col flex-1">
@@ -39,7 +40,7 @@ const LinkCard = ({ url = [], fetchUrls }) => {
           {url?.title}
         </span>
         <span className="text-2xl text-blue-400 font-bold hover:underline cursor-pointer">
-          https://slitUrl.in/{url?.custom_url ? url?.custom_url : url.short_url}
+          {baseUrl}/{url?.custom_url ? url?.custom_url : url.short_url}
         </span>
         <span className="flex items-center gap-1 hover:underline cursor-pointer">
           <LinkIcon className="p-1" />
@@ -53,9 +54,7 @@ const LinkCard = ({ url = [], fetchUrls }) => {
         <Button
           variant="ghost"
           onClick={() =>
-            navigator.clipboard.writeText(
-              `https://slitUrl.in/${url?.short_url}`
-            )
+            navigator.clipboard.writeText(`${baseUrl}/${url?.short_url}`)
           }
         >
           <Copy />

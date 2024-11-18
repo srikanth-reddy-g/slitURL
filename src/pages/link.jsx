@@ -1,3 +1,5 @@
+import DeviceStats from "@/components/device-stats";
+import Location from "@/components/location-stats";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UrlState } from "@/context";
@@ -141,6 +143,10 @@ const Link = () => {
                   <p>{stats?.length}</p>
                 </CardContent>
               </Card>
+              <CardTitle>Location Data</CardTitle>
+              <Location stats={stats} />
+              <CardTitle>Device Info</CardTitle>
+              <DeviceStats stats={stats} />
             </CardContent>
           ) : (
             <CardContent>

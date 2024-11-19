@@ -1,5 +1,5 @@
 import supabase from "./supabase";
-import { UAParser } from "ua-parser-js";
+import MobileDetect from "mobile-detect";
 
 export async function getClicksForUrls(urlIds) {
   const { data, error } = await supabase
@@ -15,12 +15,11 @@ export async function getClicksForUrls(urlIds) {
   return data;
 }
 
-const parser = new UAParser();
+const parser = new MobileDetect(window.navigator.userAgent);
 
 export const storeClicks = async ({ id, originalUrl }) => {
   try {
-    const res = parser.getResult();
-    const device = res.type || "desktop"; // Default to desktop if type is not detected
+    const device = parser.mobile() ? "Mobile" : "Desktop"; // Default to desktop if type is not detected
 
     const response = await fetch("https://ipapi.co/json");
     const { city, country_name: country } = await response.json();

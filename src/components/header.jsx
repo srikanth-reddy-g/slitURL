@@ -13,6 +13,7 @@ import { LinkIcon, LogOut } from "lucide-react";
 import { UrlState } from "@/context";
 import { logout } from "@/db/apiAuth";
 import useFetch from "@/hooks/use-fetch";
+import { BarLoader } from "react-spinners";
 
 const Header = () => {
   const navigate = useNavigate();
